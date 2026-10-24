@@ -1,3 +1,4 @@
+
 from __future__ import annotations
 
 import argparse
@@ -178,6 +179,12 @@ def decrypt(root: Path, encrypted_value: str, identity_value: str, output_value:
     identity = identity.resolve()
     if not identity.is_file():
         raise VaultError(f"Identity file not found: {identity_value}")
+    try:
+        identity.relative_to(root)
+    except ValueError:
+        pass
+    else:
+        raise VaultError("Keep your private age identity outside the Git repository.")
     output = Path(output_value).expanduser()
     if not output.is_absolute():
         output = Path.cwd() / output
