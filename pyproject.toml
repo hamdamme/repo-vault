@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "repo-vault"
+version = "0.1.0"
+description = "A small Git workflow wrapper around age file encryption"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Hamdam" }]
+dependencies = []
+
+[project.scripts]
+repo-vault = "repo_vault.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
